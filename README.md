@@ -20,11 +20,9 @@ A = adjectives and V = verbs in one introduction. The score runs from −1 (only
 
 ## The flow
 
-Every introduction goes through the same steps. White boxes are steps and tinted shapes are checks. The scale in step 3 shows what the score means, with the most concrete and most abstract introductions from my notebook as examples. The dashed box is a check I have not run yet.
+Every introduction goes through the same steps, from top to bottom. The dashed box is a check I have not run yet.
 
-![Flowchart: 8,800 introductions are tagged with spaCy, verbs and adjectives are counted, each introduction gets a score from −1 (only verbs) to +1 (only adjectives), the scores pass three checks, groups are compared with two more checks, and Japanese restaurants are compared across 7 countries.](flowchart.svg)
-
-From raw text to the score and its checks, then two checks on the group comparisons.
+![Flowchart: tag every word with spaCy, count verbs and adjectives, score each introduction from −1 (only verbs) to +1 (only adjectives), check the scores, compare groups of at least 26 restaurants, and compare Japanese restaurants across 7 countries.](flowchart.svg)
 
 ## How I got the score
 
@@ -53,7 +51,7 @@ First patterns from a trial run, not tested results. All three figures come stra
 
 **Japanese restaurants only**, in the 7 countries with more than 10 of them. The same cuisine is described most concretely in Japan and most abstractly in Germany and France.
 
-Japan and Japanese cuisine come out the most concrete in all three views. Because this is a trial, I read that as a pattern to check. Part of it may come from how the tagger handles Japanese culinary loanwords (the tagging check in the flowchart).
+Japan and Japanese cuisine come out the most concrete in all three views. Because this is a trial, I read that as a pattern to check. Part of it may come from how the tagger handles Japanese culinary loanwords (the open check in the flowchart).
 
 ## References
 
