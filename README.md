@@ -20,23 +20,22 @@ A = adjectives and V = verbs in one introduction. The score runs from −1 (only
 
 ## The flow
 
-Every introduction goes through the same steps. Boxes are steps and diamonds are checks. The red loop marks where a check sent me back to rewrite the formula, and the dashed box is a check I have not run yet.
+Every introduction goes through the same steps. White boxes are steps and tinted shapes are checks. The scale in step 3 shows what the score means, with the most concrete and most abstract introductions from my notebook as examples. The dashed box is a check I have not run yet.
 
-![Flowchart: 8,800 introductions are tagged with spaCy, verbs and adjectives are counted and combined into a score, the score is rewritten from v1 to v3 until it passes checks A to C, groups are compared with checks D and E, and Japanese restaurants are compared across 7 countries.](flowchart.svg)
+![Flowchart: 8,800 introductions are tagged with spaCy, verbs and adjectives are counted, each introduction gets a score from −1 (only verbs) to +1 (only adjectives), the scores pass three checks, groups are compared with two more checks, and Japanese restaurants are compared across 7 countries.](flowchart.svg)
 
-From raw text to the score I kept (v3), then two checks on the group comparisons.
+From raw text to the score and its checks, then two checks on the group comparisons.
 
-## Three versions of the score
+## How I got the score
 
-Each version went through checks A, B and C in order. A version that failed a check never reached the next one.
+My first try was an abstraction index: the share of adjectives, from 0 to 1. It passed the first two checks but not the third. An introduction with 5 verbs and 0 adjectives scored 0, the same as one with nothing to count. So I switched to a polarized score from −1 to +1.
 
-| Version | Formula | A · Spread | B · Extremes | C · Meaning of 0 |
+| Score | Formula | Spread | Ends | Zero |
 | --- | --- | --- | --- | --- |
-| v1, dropped | `V / (A + 0.001)`<br>higher = more verbs | ✗ SD 78, max 5,000. An introduction with 5 verbs and no adjectives scores 5 ÷ 0.001. | *not reached* | *not reached* |
-| v2, dropped | `A / (A + V + 0.001)`<br>0 to 1, higher = more adjectives | ✓ Bell-shaped, centered near 0.55. | ✓ Lowest: 5 verbs, 0 adjectives. Highest: 7 adjectives, 0 verbs. | ✗ 0 means *only verbs* and also *nothing to count*. Neutral sits at 0.5. |
-| **v3, kept** | `(A − V) / (A + V + 0.001)`<br>−1 to +1, 0 = balanced | ✓ Bell-shaped, centered a little above 0. | ✓ Same order as v2. | ✓ 0 means no lean: balanced, or nothing to count. |
+| Abstraction index, dropped | `A / (A + V + 0.001)`<br>0 to 1, higher = more adjectives | ✓ Bell-shaped, centered near 0.55. | ✓ Lowest: 5 verbs, 0 adjectives. Highest: 7 adjectives, 0 verbs. | ✗ 0 means *only verbs* and also *nothing to count*. Neutral sits at 0.5. |
+| **Polarized score, kept** | `(A − V) / (A + V + 0.001)`<br>−1 to +1, 0 = balanced | ✓ Bell-shaped, centered a little above 0. | ✓ Same order as the abstraction index. | ✓ 0 means no lean: balanced, or nothing to count. |
 
-v2 and v3 put introductions in the same order, since v3 ≈ 2 × v2 − 1 whenever there is something to count. Moving to v3 kept that order and moved the neutral point to 0.
+The two scores put introductions in the same order, since the polarized score ≈ 2 × the index − 1 whenever there is something to count. Switching kept that order and moved the neutral point to 0.
 
 ## Trial findings around the world
 
@@ -54,7 +53,7 @@ First patterns from a trial run, not tested results. All three figures come stra
 
 **Japanese restaurants only**, in the 7 countries with more than 10 of them. The same cuisine is described most concretely in Japan and most abstractly in Germany and France.
 
-Japan and Japanese cuisine come out the most concrete in all three views. Because this is a trial, I read that as a pattern to check. Part of it may come from how the tagger handles Japanese culinary loanwords (check D in the flowchart).
+Japan and Japanese cuisine come out the most concrete in all three views. Because this is a trial, I read that as a pattern to check. Part of it may come from how the tagger handles Japanese culinary loanwords (the tagging check in the flowchart).
 
 ## References
 
