@@ -53,6 +53,13 @@ First patterns from a trial run, not tested results. All three figures come stra
 
 Japan and Japanese cuisine come out the most concrete in all three views. Because this is a trial, I read that as a pattern to check. Part of it may come from how the tagger handles Japanese culinary loanwords (the open check in the flowchart).
 
+## Code
+
+- [`code/clt_score.ipynb`](code/clt_score.ipynb): the whole analysis, from the word counts to the three figures. It runs in Google Colab; `DATA_DIR` at the top points to the data folder.
+- [`code/michelin_engine.py`](code/michelin_engine.py): tags every word with spaCy and counts the verbs, adjectives and nouns in each introduction.
+
+The data (the scraped introductions and their word counts) is not in this repo.
+
 ## References
 
 - Honnibal, M., Montani, I., Van Landeghem, S., & Boyd, A. (2020). *spaCy: Industrial-strength natural language processing in Python* [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.1212303
