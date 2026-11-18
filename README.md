@@ -1,4 +1,4 @@
-# Counting verbs and adjectives (trial)
+# Loanwords' Abstractness in the Context
 
 > “The farther removed an object is from direct experience, the higher (more abstract) the level of construal of that object.”
 >
